@@ -6,29 +6,23 @@
 
     package eu.newsreader.eventcoreference.naf;
 
-    import com.hp.hpl.jena.graph.NodeFactory;
-    import com.hp.hpl.jena.query.*;
-    import com.hp.hpl.jena.rdf.model.Model;
-    import com.hp.hpl.jena.sparql.core.Quad;
-    import com.hp.hpl.jena.tdb.TDBFactory;
-    import com.hp.hpl.jena.vocabulary.RDF;
-    import org.apache.commons.codec.binary.Base64;
-    import org.apache.jena.atlas.web.auth.HttpAuthenticator;
-    import org.apache.jena.atlas.web.auth.SimpleAuthenticator;
-    import org.apache.jena.riot.RDFDataMgr;
     import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.NodeFactory;
+import com.hp.hpl.jena.query.*;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.sparql.core.DatasetGraph;
+import com.hp.hpl.jena.sparql.core.Quad;
+import com.hp.hpl.jena.tdb.TDBFactory;
+import com.hp.hpl.jena.vocabulary.RDF;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.jena.atlas.web.auth.HttpAuthenticator;
+import org.apache.jena.atlas.web.auth.SimpleAuthenticator;
+import org.apache.jena.riot.RDFDataMgr;
 
-    import java.util.*;
-
-    import com.hp.hpl.jena.query.Query;
-    import com.hp.hpl.jena.query.QueryExecution;
-    import com.hp.hpl.jena.query.QueryExecutionFactory;
-    import com.hp.hpl.jena.query.QueryFactory;
-    import com.hp.hpl.jena.query.QuerySolution;
-    import com.hp.hpl.jena.query.ResultSet;
-    import com.hp.hpl.jena.rdf.model.RDFNode;
-    import com.hp.hpl.jena.rdf.model.Resource;
-    import com.hp.hpl.jena.sparql.core.DatasetGraph;
+import java.util.ArrayList;
+import java.util.Iterator;
 
     /**
      * Created with IntelliJ IDEA.
@@ -313,13 +307,14 @@
                         if (myILIs.size() == 1) {
                             sparqlQuery += "?ev a <" + myILIs.get(0) + "> . ";
                         } else {
-
+                            // TODO: The following few lines should be uncommented once the WN ILIs in this format exist in cars3.
+                            /*
                             String iliFilter = "?ev a ?ili . FILTER ( ?ili IN (";
                             for (int i = 0; i < myILIs.size(); i++) {
                                 iliFilter += "<" + myILIs.get(i) + "> , ";
                             }
                             sparqlQuery += iliFilter.substring(0, iliFilter.length() - 2) + ") ) . ";
-
+                            */
                         }
 
                     } else {
