@@ -55,6 +55,8 @@ import java.util.Iterator;
                 "--source-data              <path>   <Path to LexisNexis meta data on owners and authors to enrich the provenance>\n" +
                 "--verbose                           <Representation of mentions is extended with token ids, terms ids and sentence number\n" +
                 "--ili-uri                           <If used, the ILI-identifiers are used to represents events. This is necessary for cross-lingual extraction>\n" +
+                "--concept-match <int>      <threshold for conceptual matches of events, default is 50>\n" +
+                "--phrase-match  <int>      <threshold for phrase matches of events, default is 50>\n" +
                 "--contextual-match-type    <path>   <Indicates what is used to match events across resources. Default value is \"ILILEMMA\". Values:\"LEMMA\", \"ILI\", \"ILILEMMA\">\n" +
                 "--contextual-lcs                    <Use lowest-common-subsumers. Default value is ON.>\n" +
                 "--contextual-needed-roles  <path>   <String with PropBank roles for which there must be a match, e.g. \"a1,a2,a3,a4\">\n" +
@@ -105,6 +107,56 @@ import java.util.Iterator;
 
         public static final String NL = System.getProperty("line.separator");
 
+        public static final Node lemmaNode = NodeFactory.createURI("http://www.w3.org/2000/01/rdf-schema#label");
+        public static final Node timeNode = NodeFactory.createURI("http://semanticweb.cs.vu.nl/2009/11/sem/hasTime");
+        public static final Node typeNode = NodeFactory.createURI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
+        public static final Node instantNode = NodeFactory.createURI("http://www.w3.org/TR/owl-time#Instant");
+        public static final Node intervalNode = NodeFactory.createURI("http://www.w3.org/TR/owl-time#Interval");
+        public static final Node specificTimeNode = NodeFactory.createURI("http://www.w3.org/TR/owl-time#inDateTime");
+
+        public static int conceptMatchThreshold = 10;
+        public static int phraseMatchThreshold = 10;
+
+        static public String matchSingleTmx(Node tmx, DatasetGraph g, Model m){
+            String sq="";
+            if (g.contains(null, tmx, typeNode, instantNode)) { // One Instant
+                sq += "?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasTime> ?t . ?t a <http://www.w3.org/TR/owl-time#Instant> . ";
+                for (Iterator<Quad> iter = g.find(null, tmx, specificTimeNode, null); iter.hasNext(); ) {
+                    Quad q = iter.next();
+                    sq += "?t <http://www.w3.org/TR/owl-time#inDateTime> <" + q.asTriple().getObject() + "> . ";
+                }
+            } else { // One Interval
+
+                String intervalQuery = "SELECT ?begin ?end WHERE { <" + tmx + ">  <http://www.w3.org/TR/owl-time#hasBeginning> ?begin ; <http://www.w3.org/TR/owl-time#hasEnd> ?end . }";
+
+                Query inQuery = QueryFactory.create(intervalQuery);
+
+                // Create a single execution of this query, apply to a model
+                // which is wrapped up as a Dataset
+                QueryExecution inQexec = QueryExecutionFactory.create(inQuery, m);
+
+                try {
+                    // Assumption: it’s a SELECT query.
+                    ResultSet inrs = inQexec.execSelect();
+                    // The order of results is undefined.
+                    for (; inrs.hasNext(); ) {
+                        QuerySolution evrb = inrs.nextSolution();
+                        // Get title - variable names do not include the ’?’
+                        String begin = evrb.get("begin").toString();
+                        String end = evrb.get("end").toString();
+
+                        String unionQuery = "{ ?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasTime> ?t . ?t a <http://www.w3.org/TR/owl-time#Interval> . ?t <http://www.w3.org/TR/owl-time#hasBeginning> <" + begin + "> ; <http://www.w3.org/TR/owl-time#hasEnd> <" + end + "> . } ";
+                        unionQuery += "UNION ";
+                        unionQuery += "{ ?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasEarliestBeginTimeStamp> ?t1 . ?t1 a <http://www.w3.org/TR/owl-time#Instant> . ?t1 <http://www.w3.org/TR/owl-time#inDateTime> <" + begin + "> . ?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasEarliestEndTimeStamp> ?t2 . ?t2 a <http://www.w3.org/TR/owl-time#Instant> . ?t2 <http://www.w3.org/TR/owl-time#inDateTime> <" + end + "> . } ";
+                        sq += unionQuery;
+                    }
+                } finally {
+                    inQexec.close();
+                }
+            }
+            return sq;
+        }
+
         static public void main(String[] args) {
 
             // 1. CLUSTER
@@ -121,7 +173,21 @@ import java.util.Iterator;
                     filename = args[i + 1];
                 } else if (arg.equals("--project") && args.length > (i + 1)) {
                     projectName = args[i + 1];
-                } else if (arg.equals("--contextual-match-type") && args.length > (i + 1)) {
+                }
+                else if (arg.equals("--concept-match") && args.length>(i+1)) {
+                    try {
+                        conceptMatchThreshold = Integer.parseInt(args[i + 1]);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else if (arg.equals("--phrase-match") && args.length>(i+1)) {
+                    try {
+                        phraseMatchThreshold = Integer.parseInt(args[i + 1]);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                }else if (arg.equals("--contextual-match-type") && args.length > (i + 1)) {
                     CONTEXTUALMATCHTYPE = args[i + 1];
                 } else if (arg.equals("--contextual-lcs")) {
                     CONTEXTUALLCS = true;
@@ -170,12 +236,7 @@ import java.util.Iterator;
 
             //System.out.println(m.size());
 
-            Node lemmaNode = NodeFactory.createURI("http://www.w3.org/2000/01/rdf-schema#label");
-            Node timeNode = NodeFactory.createURI("http://semanticweb.cs.vu.nl/2009/11/sem/hasTime");
-            Node typeNode = NodeFactory.createURI("http://www.w3.org/1999/02/22-rdf-syntax-ns#type");
-            Node instantNode = NodeFactory.createURI("http://www.w3.org/TR/owl-time#Instant");
-            Node intervalNode = NodeFactory.createURI("http://www.w3.org/TR/owl-time#Interval");
-            Node specificTimeNode = NodeFactory.createURI("http://www.w3.org/TR/owl-time#inDateTime");
+
 
 
             final String prolog1 = "PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>";
@@ -213,7 +274,8 @@ import java.util.Iterator;
 
                     String MATCHTYPE = "";
                     // Process the event now ;)
-                    String sparqlQuery = "SELECT distinct ?ev WHERE { ?ev a <http://semanticweb.cs.vu.nl/2009/11/sem/Event> , ";
+                    String sparqlSelectQuery = "SELECT distinct ?ev ";
+                    String sparqlQuery = "WHERE { ?ev a <http://semanticweb.cs.vu.nl/2009/11/sem/Event> , ";
                     ArrayList<String> neededRoles = new ArrayList<String>();
                     String nwrtype = "";
                     ArrayList<String> myILIs = new ArrayList<String>();
@@ -247,7 +309,7 @@ import java.util.Iterator;
                             } else if (rdfType.contains("http://www.newsreader-project.eu/ontologies/framenet/")) {
                                 myFrames.add(rdfType);
                             } else if (!rdfType.equals("http://semanticweb.cs.vu.nl/2009/11/sem/Event")) { // wordnet ILIs
-                                myILIs.add(rdfType);
+                                myILIs.add(rdfType.replace("http://www.newsreader-project.eu/ontologies/pwn3.0/eng-", "http://www.newsreader-project.eu/ontologies/ili-30-"));
                             }
 
                         }
@@ -303,36 +365,52 @@ import java.util.Iterator;
 
                     // Match Type now:
 
+                    boolean matchMultiple=false;
+                    boolean matchLemma=false;
+                    boolean matchILI=false;
+                    ArrayList<Node> allLemmas = new ArrayList<Node>();
+
                     if (MATCHTYPE.equals("ILILEMMA") && myILIs.size() > 0) {
+                        matchILI=true;
                         if (myILIs.size() == 1) {
-                            sparqlQuery += "?ev a <" + myILIs.get(0) + "> . ";
+                            sparqlSelectQuery+="(COUNT(distinct ?allilis) as ?conceptcount) ";
+                            sparqlQuery += "?ev a <" + myILIs.get(0) + "> . ?ev a ?allilis . FILTER strstarts(str(?allilis), \"http://www.newsreader-project.eu/ontologies/ili-30-\") . ";
                         } else {
+                            matchMultiple=true;
+                            sparqlSelectQuery+="(COUNT(distinct ?allilis) as ?conceptcount) (COUNT(distinct ?myilis) as ?myconceptcount) ";
+                            sparqlQuery += "?ev a ?allilis . FILTER strstarts(str(?allilis), \"http://www.newsreader-project.eu/ontologies/ili-30-\") . ";
                             // TODO: The following few lines should be uncommented once the WN ILIs in this format exist in cars3.
-                            /*
-                            String iliFilter = "?ev a ?ili . FILTER ( ?ili IN (";
+
+                            String iliFilter = "?ev a ?myilis . FILTER ( ?myilis IN (";
                             for (int i = 0; i < myILIs.size(); i++) {
                                 iliFilter += "<" + myILIs.get(i) + "> , ";
                             }
                             sparqlQuery += iliFilter.substring(0, iliFilter.length() - 2) + ") ) . ";
-                            */
+
                         }
 
                     } else {
-
-                        ArrayList<Node> allLemmas = new ArrayList<Node>();
                         for (Iterator<Quad> iter = g.find(null, eventNode, lemmaNode, null); iter.hasNext(); ) {
                             Quad q = iter.next();
                             allLemmas.add(q.asTriple().getObject());
                         }
                         if (!allLemmas.isEmpty()) {
-                            if (allLemmas.size() == 1)
-                                sparqlQuery += "?ev <http://www.w3.org/2000/01/rdf-schema#label> " + allLemmas.get(0) + " . ";
-                            else {
-                                String lemmaFilter = " ?ev <http://www.w3.org/2000/01/rdf-schema#label> ?lbl . FILTER ( ?lbl IN (";
+                            matchLemma=true;
+                            if (allLemmas.size() == 1) {
+                                sparqlSelectQuery+="(COUNT(distinct ?lbl) as ?conceptcount) ";
+                                sparqlQuery += "?ev <http://www.w3.org/2000/01/rdf-schema#label> " + allLemmas.get(0) + " . ?ev <http://www.w3.org/2000/01/rdf-schema#label> ?lbl . ";
+                            } else {
+                                matchMultiple=true;
+                                sparqlSelectQuery+="(COUNT(distinct ?lbl) as ?conceptcount) (COUNT(distinct ?mylbls) as ?myconceptcount) ";
+                                sparqlQuery += " ?ev <http://www.w3.org/2000/01/rdf-schema#label> ?lbl . ";
+                                sparqlQuery += " ?ev <http://www.w3.org/2000/01/rdf-schema#label> ?mylbls . ";
+
+                                String lemmaFilter = " ?ev <http://www.w3.org/2000/01/rdf-schema#label> ?mylbls . FILTER ( ?mylbls IN (";
                                 for (int i = 0; i < allLemmas.size(); i++) {
                                     lemmaFilter += allLemmas.get(i) + ", ";
                                 }
                                 sparqlQuery += lemmaFilter.substring(0, lemmaFilter.length() - 2) + ") ) . ";
+
                             }
                         }
                     }
@@ -346,39 +424,39 @@ import java.util.Iterator;
 
                     if (allTimes.size() == 1) {
                         Node tmx = allTimes.get(0);
-                        if (g.contains(null, tmx, typeNode, instantNode)) { // One Instant
-                            sparqlQuery += "?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasTime> ?t . ?t a <http://www.w3.org/TR/owl-time#Instant> . ";
-                            for (Iterator<Quad> iter = g.find(null, tmx, specificTimeNode, null); iter.hasNext(); ) {
-                                Quad q = iter.next();
-                                sparqlQuery += "?t <http://www.w3.org/TR/owl-time#inDateTime> <" + q.asTriple().getObject() + "> . ";
-                            }
-                        } else { // One Interval
 
-                            String intervalQuery = "SELECT ?begin ?end WHERE { <" + tmx + ">  <http://www.w3.org/TR/owl-time#hasBeginning> ?begin ; <http://www.w3.org/TR/owl-time#hasEnd> ?end . }";
+                        sparqlQuery += matchSingleTmx(tmx, g, m);
+                        sparqlQuery += "} ";
+                        if (matchILI || matchLemma) {
+                            sparqlQuery += "GROUP BY ?ev";
+                        }
+                        sparqlQuery = sparqlSelectQuery + sparqlQuery;
 
-                            Query inQuery = QueryFactory.create(intervalQuery);
+                        System.out.println(sparqlQuery);
+                        HttpAuthenticator authenticator = new SimpleAuthenticator(user, pass.toCharArray());
+                        QueryExecution x = QueryExecutionFactory.sparqlService(serviceEndpoint, sparqlQuery, authenticator);
+                        ResultSet resultset = x.execSelect();
+                        while (resultset.hasNext()) {
+                            QuerySolution solution = resultset.nextSolution();
+                            if (matchILI || matchLemma) {
+                                int threshold;
+                                if (matchILI)
+                                    threshold = conceptMatchThreshold;
+                                else
+                                    threshold=phraseMatchThreshold;
 
-                            // Create a single execution of this query, apply to a model
-                            // which is wrapped up as a Dataset
-                            QueryExecution inQexec = QueryExecutionFactory.create(inQuery, m);
-
-                            try {
-                                // Assumption: it’s a SELECT query.
-                                ResultSet inrs = inQexec.execSelect();
-                                // The order of results is undefined.
-                                for (; inrs.hasNext(); ) {
-                                    QuerySolution evrb = inrs.nextSolution();
-                                    // Get title - variable names do not include the ’?’
-                                    String begin = evrb.get("begin").toString();
-                                    String end = evrb.get("end").toString();
-
-                                    String unionQuery = "{ ?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasTime> ?t . ?t a <http://www.w3.org/TR/owl-time#Interval> . ?t <http://www.w3.org/TR/owl-time#hasBeginning> <" + begin + "> ; <http://www.w3.org/TR/owl-time#hasEnd> <" + end + "> . } ";
-                                    unionQuery += "UNION ";
-                                    unionQuery += "{ ?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasEarliestBeginTimeStamp> ?t1 . ?t1 a <http://www.w3.org/TR/owl-time#Instant> . ?t1 <http://www.w3.org/TR/owl-time#inDateTime> <" + begin + "> . ?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasEarliestEndTimeStamp> ?t2 . ?t2 a <http://www.w3.org/TR/owl-time#Instant> . ?t2 <http://www.w3.org/TR/owl-time#inDateTime> <" + end + "> . } ";
-                                    sparqlQuery += unionQuery;
+                                if (matchMultiple) {
+                                    System.out.println(solution);
+                                    if (checkIliLemmaThreshold(myILIs.size(), solution.get("conceptcount").asLiteral().getInt(), solution.get("myconceptcount").asLiteral().getInt(), threshold)) {
+                                        System.out.println("<" + eventId + "> <http://www.w3.org/2002/07/owl#sameAs> <" + solution.get("ev") + "> . \n");
+                                    }
+                                } else {
+                                    if (checkIliLemmaThreshold(1, solution.get("conceptcount").asLiteral().getInt(), 1, threshold)) {
+                                        System.out.println("<" + eventId + "> <http://www.w3.org/2002/07/owl#sameAs> <" + solution.get("ev") + "> . \n");
+                                    }
                                 }
-                            } finally {
-                                inQexec.close();
+                            } else {
+                                System.out.println("<" + eventId + "> <http://www.w3.org/2002/07/owl#sameAs> <" + solution.get("ev") + "> . \n");
                             }
                         }
                     } else if (allTimes.size() == 0) {
@@ -412,17 +490,68 @@ import java.util.Iterator;
                                     sparqlQuery += "{ ?ev <http://semanticweb.cs.vu.nl/2009/11/sem/hasEarliestEndTimeStamp> ?t2 . ?t2 a <http://www.w3.org/TR/owl-time#Instant> . ?t2 <http://www.w3.org/TR/owl-time#inDateTime> <" + end + "> . } ";
                                 }
                             }
+                            sparqlQuery += "}";
+
+                            if (matchILI || matchLemma) {
+                                sparqlQuery += "GROUP BY ?ev";
+                            }
+                            sparqlQuery = sparqlSelectQuery + sparqlQuery;
+
+                            System.out.println(sparqlQuery);
+                            HttpAuthenticator authenticator = new SimpleAuthenticator(user, pass.toCharArray());
+                            QueryExecution x = QueryExecutionFactory.sparqlService(serviceEndpoint, sparqlQuery, authenticator);
+                            ResultSet resultset = x.execSelect();
+                            while (resultset.hasNext()) {
+                                QuerySolution solution = resultset.nextSolution();
+                                if (matchILI || matchLemma) {
+                                    int threshold;
+                                    if (matchILI)
+                                        threshold = conceptMatchThreshold;
+                                    else
+                                        threshold=phraseMatchThreshold;
+
+                                    if (matchMultiple) {
+                                        if (checkIliLemmaThreshold(myILIs.size(), solution.get("conceptcount").asLiteral().getInt(), solution.get("myconceptcount").asLiteral().getInt(), threshold)) {
+                                            System.out.println("<" + eventId + "> <http://www.w3.org/2002/07/owl#sameAs> <" + solution.get("ev") + "> . \n");
+                                        }
+                                    } else {
+                                        if (checkIliLemmaThreshold(1, solution.get("conceptcount").asLiteral().getInt(), 1, threshold)) {
+                                            System.out.println("<" + eventId + "> <http://www.w3.org/2002/07/owl#sameAs> <" + solution.get("ev") + "> . \n");
+                                        }
+                                    }
+                                } else {
+                                    System.out.println("<" + eventId + "> <http://www.w3.org/2002/07/owl#sameAs> <" + solution.get("ev") + "> . \n");
+                                }
+                            }
                         } finally {
                             mpQexec.close();
                         }
 
                     } else {
-                        continue;
+                        if (true)
+                            continue;
+                        ArrayList<Node> toMerge = new ArrayList<Node>();
+                        for (int j=0; j<allTimes.size(); j++) {
+                            String tmxQuery = sparqlQuery;
+
+                            Node tmx = allTimes.get(j);
+                            tmxQuery += matchSingleTmx(tmx, g, m);
+                            tmxQuery +="}";
+
+                            HttpAuthenticator authenticator = new SimpleAuthenticator(user, pass.toCharArray());
+                            QueryExecution x = QueryExecutionFactory.sparqlService(serviceEndpoint, tmxQuery, authenticator);
+                            ResultSet resultset = x.execSelect();
+                            if (!resultset.hasNext()){
+                                toMerge.add(tmx);
+                            } else {
+                                while (resultset.hasNext()) {
+                                    System.out.println("<" + eventId + "> <http://www.w3.org/2002/07/owl#sameAs> <" + resultset.nextSolution().get("ev") + "> . \n");
+                                }
+                            }
+                        }
                     }
 
 
-                    sparqlQuery += "}";
-
 
                     /////////////////////////////////////////////////////////////////////////////////////////////////////
                     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -441,12 +570,7 @@ import java.util.Iterator;
                     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-                    HttpAuthenticator authenticator = new SimpleAuthenticator(user, pass.toCharArray());
-                    QueryExecution x = QueryExecutionFactory.sparqlService(serviceEndpoint, sparqlQuery, authenticator);
-                    ResultSet resultset = x.execSelect();
-                    while (resultset.hasNext()) {
-                        System.out.println("<" + eventId + "> <http://www.w3.org/2002/07/owl#sameAs> <" + resultset.nextSolution().get("ev") + "> . \n");
-                    }
+
 
                 }
 
@@ -457,5 +581,19 @@ import java.util.Iterator;
             }
 
 
+        }
+
+        private static boolean checkIliLemmaThreshold(int mysize, int kssize, int nMatches, int matchThreshold) {
+
+            System.out.println(mysize);
+            System.out.println(kssize);
+            System.out.println(nMatches);
+            System.out.println(matchThreshold);
+            if ((nMatches * 100 / mysize >= matchThreshold) &&
+                    (nMatches * 100 / kssize >= matchThreshold)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
