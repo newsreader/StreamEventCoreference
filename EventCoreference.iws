@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ae75871-a217-4b6d-9e95-275ffe370f68" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/EventCoreference.iws" afterPath="$PROJECT_DIR$/EventCoreference.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/eu/newsreader/eventcoreference/naf/ProcessEventObjectsStream.java" afterPath="$PROJECT_DIR$/src/main/java/eu/newsreader/eventcoreference/naf/ProcessEventObjectsStream.java" />
     </list>
     <ignored path="EventCoreference.iws" />
@@ -27,15 +28,23 @@
       <file leaf-file-name="ProcessEventObjectsStream.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/eu/newsreader/eventcoreference/naf/ProcessEventObjectsStream.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63503647">
-              <caret line="595" column="29" selection-start-line="595" selection-start-column="29" selection-end-line="595" selection-end-column="29" />
+            <state vertical-scroll-proportion="-0.018229166">
+              <caret line="490" column="83" selection-start-line="490" selection-start-column="83" selection-end-line="490" selection-end-column="83" />
               <folding>
-                <element signature="e#6012#6020#0" expanded="true" />
-                <element signature="e#6097#6105#0" expanded="true" />
-                <element signature="e#6187#6195#0" expanded="true" />
-                <element signature="e#20906#20912#0" expanded="true" />
-                <element signature="e#24010#24016#0" expanded="true" />
-                <element signature="e#32497#32503#0" expanded="true" />
+                <element signature="e#6062#6070#0" expanded="true" />
+                <element signature="e#6147#6155#0" expanded="true" />
+                <element signature="e#6237#6245#0" expanded="true" />
+                <element signature="e#16493#16501#0" expanded="true" />
+                <element signature="e#16606#16614#0" expanded="true" />
+                <element signature="e#16680#16688#0" expanded="true" />
+                <element signature="e#20022#20028#0" expanded="true" />
+                <element signature="e#21624#21630#0" expanded="true" />
+                <element signature="e#24626#24632#0" expanded="true" />
+                <element signature="e#24713#24721#0" expanded="true" />
+                <element signature="e#24800#24808#0" expanded="true" />
+                <element signature="e#33209#33215#0" expanded="true" />
+                <element signature="e#35272#35278#0" expanded="true" />
+                <element signature="e#41364#41370#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -440,7 +449,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -466,15 +477,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/eu/newsreader/eventcoreference/naf/ProcessEventObjectsStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63503647">
-          <caret line="595" column="29" selection-start-line="595" selection-start-column="29" selection-end-line="595" selection-end-column="29" />
+        <state vertical-scroll-proportion="-0.018229166">
+          <caret line="490" column="83" selection-start-line="490" selection-start-column="83" selection-end-line="490" selection-end-column="83" />
           <folding>
-            <element signature="e#6012#6020#0" expanded="true" />
-            <element signature="e#6097#6105#0" expanded="true" />
-            <element signature="e#6187#6195#0" expanded="true" />
-            <element signature="e#20906#20912#0" expanded="true" />
-            <element signature="e#24010#24016#0" expanded="true" />
-            <element signature="e#32497#32503#0" expanded="true" />
+            <element signature="e#6062#6070#0" expanded="true" />
+            <element signature="e#6147#6155#0" expanded="true" />
+            <element signature="e#6237#6245#0" expanded="true" />
+            <element signature="e#16493#16501#0" expanded="true" />
+            <element signature="e#16606#16614#0" expanded="true" />
+            <element signature="e#16680#16688#0" expanded="true" />
+            <element signature="e#20022#20028#0" expanded="true" />
+            <element signature="e#21624#21630#0" expanded="true" />
+            <element signature="e#24626#24632#0" expanded="true" />
+            <element signature="e#24713#24721#0" expanded="true" />
+            <element signature="e#24800#24808#0" expanded="true" />
+            <element signature="e#33209#33215#0" expanded="true" />
+            <element signature="e#35272#35278#0" expanded="true" />
+            <element signature="e#41364#41370#0" expanded="true" />
           </folding>
         </state>
       </provider>
