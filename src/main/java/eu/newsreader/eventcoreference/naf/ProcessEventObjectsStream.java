@@ -6,7 +6,7 @@
 
     package eu.newsreader.eventcoreference.naf;
 
-    import com.hp.hpl.jena.graph.Node;
+import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.NodeFactory;
 import com.hp.hpl.jena.query.*;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -20,9 +20,9 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.jena.atlas.web.auth.HttpAuthenticator;
 import org.apache.jena.atlas.web.auth.SimpleAuthenticator;
 import org.apache.jena.riot.RDFDataMgr;
-    import org.apache.jena.riot.RDFLanguages;
+import org.apache.jena.riot.RDFLanguages;
 
-    import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Iterator;
 
     /**

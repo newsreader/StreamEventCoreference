@@ -1,0 +1,458 @@
+@prefix nwrdata: <http://www.newsreader-project.eu/data/> .
+@prefix eso:   <http://www.newsreader-project.eu/ontologies/domain-ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix fn:    <http://www.newsreader-project.eu/ontologies/framenet/> .
+@prefix nwr:   <http://www.newsreader-project.eu/> .
+@prefix nwrsourceowner: <http://www.newsreader-project.eu/provenance/sourceowner/> .
+@prefix nwrontology: <http://www.newsreader-project.eu/ontologies/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gaf:   <http://groundedannotationframework.org/gaf#> .
+@prefix pb:    <http://www.newsreader-project.eu/ontologies/propbank/> .
+@prefix dbp:   <http://dbpedia.org/resource/> .
+@prefix nwrauthor: <http://www.newsreader-project.eu/provenance/author/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix wn:    <http://www.newsreader-project.eu/ontologies/pwn3.0/> .
+@prefix sem:   <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix time:  <http://www.w3.org/TR/owl-time#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+
+{ 
+}
+
+nwr:instances {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev13>
+            a              sem:Event , nwrontology:contextualEvent , wn:eng-14422488-n , wn:eng-13456567-n , wn:eng-13457378-n , fn:Change_position_on_a_scale , eso:QuantityChange , wn:eng-00203866-v ;
+            rdfs:label     "decline" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=33,40> .
+    
+    <http://www.newsreader-project.eu/data/cars/non-entities/30+%25>
+            rdfs:label     "30 %" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=29,32> .
+    
+    <http://www.newsreader-project.eu/time/20140611>
+            a              time:DateTimeDescription ;
+            time:day       "---11"^^<http://www.w3.org/2001/XMLSchema#gDay> ;
+            time:month     "--06"^^<http://www.w3.org/2001/XMLSchema#gMonth> ;
+            time:unitType  time:unitDay ;
+            time:year      "2014"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx0>
+            a                time:Instant ;
+            time:inDateTime  <http://www.newsreader-project.eu/time/20140611> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev20>
+            a              sem:Event , nwrontology:contextualEvent , wn:eng-01023071-v , wn:eng-01024190-v , wn:eng-01023259-v , wn:eng-01705257-v ;
+            rdfs:label     "cite" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=324,330> .
+    
+    dbp:Reuters  rdfs:label  "news agency Tanjug" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=296,314> .
+    
+    <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko>
+            a              nwrontology:PERSON ;
+            rdfs:label     "Cedomir Ponocko" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=343,358> , <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=616,631> .
+    
+    <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko>
+            rdfs:label     "cite TENT 's head Cedomir Ponocko" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=324,358> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev21>
+            a              sem:Event , nwrontology:contextualEvent , wn:eng-05538625-n , fn:Leadership , eso:BeingLeader , wn:eng-02694287-v ;
+            rdfs:label     "head" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=338,342> .
+    
+    <http://www.newsreader-project.eu/data/cars/non-entities/tent+%27s>
+            rdfs:label     "TENT 's" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=331,337> .
+    
+    <http://www.newsreader-project.eu/time/201407>
+            a              time:DateTimeDescription ;
+            time:month     "--07"^^<http://www.w3.org/2001/XMLSchema#gMonth> ;
+            time:unitType  time:unitDay ;
+            time:year      "2014"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx1>
+            a                time:Instant ;
+            rdfs:label       "the next month" ;
+            gaf:denotedBy    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=442,456> ;
+            time:inDateTime  <http://www.newsreader-project.eu/time/201407> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev22>
+            a              sem:Event , nwrontology:contextualEvent , wn:eng-02503365-v , wn:eng-00989602-v , wn:eng-01438304-v , wn:eng-02551144-v , wn:eng-01062253-v , wn:eng-02293321-v , fn:Delivery , eso:Transportation ;
+            rdfs:label     "deliver" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=374,382> .
+    
+    dbp:Kolubara  rdfs:label  "the Kolubara" , "Kolubara" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=365,373> , <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=638,646> , <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=772,784> , <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=776,784> .
+    
+    dbp:Tonne  rdfs:label  "40,000-45 ,000 tonne per day" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=383,411> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev40>
+            a              sem:Event , nwrontology:contextualEvent , wn:eng-01400044-v , wn:eng-01236164-v , wn:eng-01405044-v , fn:Cause_harm , fn:Cause_impact , fn:Experience_bodily_harm , fn:Hit_target , fn:Impact , wn:eng-01137138-v , wn:eng-01152396-v ;
+            rdfs:label     "hit" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=270,273> .
+    
+    dbp:Flood  rdfs:label  "by the recent flood" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=274,294> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev42>
+            a              sem:Event , nwrontology:contextualEvent , fn:Change_position_on_a_scale , eso:QuantityChange , wn:eng-02006834-v , wn:eng-02020590-v , fn:Arriving , fn:Path_shape , eso:Arriving , wn:eng-02230772-v ;
+            rdfs:label     "reach" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=536,541> .
+    
+    <http://www.newsreader-project.eu/data/cars/non-entities/the+increase>
+            rdfs:label     "the increase" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=497,509> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx2>
+            a                  time:Interval ;
+            rdfs:label         "the winter period" ;
+            gaf:denotedBy      <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=597,614> ;
+            time:hasBeginning  <http://www.newsreader-project.eu/time/20131001> ;
+            time:hasEnd        <http://www.newsreader-project.eu/time/20131231> .
+    
+    <http://www.newsreader-project.eu/time/20131001>
+            a              time:DateTimeDescription ;
+            time:day       "---01"^^<http://www.w3.org/2001/XMLSchema#gDay> ;
+            time:month     "--10"^^<http://www.w3.org/2001/XMLSchema#gMonth> ;
+            time:unitType  time:unitDay ;
+            time:year      "2013"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+    
+    <http://www.newsreader-project.eu/time/20131231>
+            a              time:DateTimeDescription ;
+            time:day       "---31"^^<http://www.w3.org/2001/XMLSchema#gDay> ;
+            time:month     "--12"^^<http://www.w3.org/2001/XMLSchema#gMonth> ;
+            time:unitType  time:unitDay ;
+            time:year      "2013"^^<http://www.w3.org/2001/XMLSchema#gYear> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev43>
+            a              sem:Event , nwrontology:contextualEvent , wn:eng-00065370-v , wn:eng-02203362-v , fn:Inclusion , fn:Possession , eso:HavingInPossession , wn:eng-02204692-v ;
+            rdfs:label     "have" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=647,650> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev47>
+            a              sem:Event , nwrontology:sourceEvent , wn:eng-02129289-v , fn:Categorization , fn:Grasp , fn:Perception_experience , wn:eng-01635432-v , wn:eng-00690614-v , wn:eng-00623151-v , wn:eng-02150948-v , wn:eng-02128873-v , wn:eng-00920336-v , wn:eng-02156225-v , wn:eng-02131279-v , wn:eng-02493030-v , wn:eng-02488304-v , wn:eng-02488488-v ;
+            rdfs:label     "see" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=165,168> .
+    
+    dbp:Nikola_Tesla  rdfs:label  "Nikola Tesla" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=140,152> , <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=786,798> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev48>
+            a              sem:Event , nwrontology:sourceEvent , wn:eng-00966809-v , wn:eng-00965035-v , fn:Statement , wn:eng-00965390-v ;
+            rdfs:label     "report" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=315,323> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev50>
+            a              sem:Event , nwrontology:sourceEvent , fn:Statement , wn:eng-01009240-v , wn:eng-01016002-v , fn:Text_creation , fn:Choosing , wn:eng-00923197-v , wn:eng-00746718-v , wn:eng-00979870-v , wn:eng-00674607-v , wn:eng-00679389-v ;
+            rdfs:label     "say" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=632,636> , <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=1154,1158> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev51>
+            a              sem:Event , nwrontology:contextualEvent , wn:eng-01621555-v , wn:eng-01752884-v , wn:eng-01752495-v , fn:Behind_the_scenes , fn:Cause_to_start , fn:Intentionally_create , fn:Manufacturing ;
+            rdfs:label     "produce" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=838,845> .
+    
+    dbp:Energy  rdfs:label  "52 % of the total energy" ;
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=846,869> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr3> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev13>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx0> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr3,rl4> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev13>
+            sem:hasActor  <http://www.newsreader-project.eu/data/cars/non-entities/30+%25> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Change_position_on_a_scale@Difference>
+                    <http://www.newsreader-project.eu/data/cars/non-entities/30+%25> ;
+            pb:A2         <http://www.newsreader-project.eu/data/cars/non-entities/30+%25> .
+}
+
+nwr:provenance {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr3,rl4>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=29,40> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr10>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr15,rl34>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=296,330> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr15,rl35>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=324,358> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr11>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=338,456> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr16,rl36>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=296,342> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr16,rl37>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=331,342> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr16,rl38>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=331,358> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr12>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=442,456> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr17,rl40>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=365,382> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr17,rl41>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=374,411> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr31>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=270,456> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr9,rl20>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=270,294> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr33>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=597,614> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr20,rl45>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=497,541> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr34>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr25,rl55>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=638,650> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr38>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=165,168> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr8,rl14>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=125,168> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr39>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr14,rl32>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=296,323> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr14,rl33>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=315,358> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr41>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=597,614> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr42>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr21,rl48>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=616,636> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr43>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#> .
+    
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr30,rl66>
+            gaf:denotedBy  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#char=838,869> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr10> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev20>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx0> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr15,rl34> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev20>
+            sem:hasActor  dbp:Reuters ;
+            pb:A0         dbp:Reuters .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr15,rl35> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev20>
+            sem:hasActor  <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> , <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> ;
+            pb:A1         <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> , <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr11> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev21>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx1> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr16,rl36> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev21>
+            sem:hasActor            dbp:Reuters ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Leadership@Activity>
+                    dbp:Reuters ;
+            pb:A0                   dbp:Reuters .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr16,rl37> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev21>
+            sem:hasActor        <http://www.newsreader-project.eu/data/cars/non-entities/tent+%27s> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Leadership@Role>
+                    <http://www.newsreader-project.eu/data/cars/non-entities/tent+%27s> ;
+            pb:A1               <http://www.newsreader-project.eu/data/cars/non-entities/tent+%27s> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr16,rl38> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev21>
+            sem:hasActor            <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> , <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Leadership@Activity>
+                    <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> , <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> ;
+            pb:A0                   <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> , <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr12> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev22>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx1> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr17,rl40> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev22>
+            sem:hasActor       dbp:Kolubara ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Delivery@Theme>
+                    dbp:Kolubara ;
+            pb:A0              dbp:Kolubara .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr17,rl41> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev22>
+            sem:hasActor       dbp:Tonne ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Delivery@Theme>
+                    dbp:Tonne ;
+            pb:A1              dbp:Tonne .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr31> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev40>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx1> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr9,rl20> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev40>
+            sem:hasActor                    dbp:Flood ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Cause_harm@Instrument>
+                    dbp:Flood ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Cause_harm@Victim>
+                    dbp:Flood ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Cause_impact@Impactor>
+                    dbp:Flood ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Experience_bodily_harm@Body_part>
+                    dbp:Flood ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Experience_bodily_harm@Time>
+                    dbp:Flood ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Hit_target@Agent>
+                    dbp:Flood ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Impact@Impactor>
+                    dbp:Flood ;
+            pb:A2                           dbp:Flood .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr33> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev42>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx2> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr20,rl45> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev42>
+            sem:hasActor          <http://www.newsreader-project.eu/data/cars/non-entities/the+increase> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Arriving@Theme>
+                    <http://www.newsreader-project.eu/data/cars/non-entities/the+increase> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Change_position_on_a_scale@Attribute>
+                    <http://www.newsreader-project.eu/data/cars/non-entities/the+increase> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Path_shape@Source>
+                    <http://www.newsreader-project.eu/data/cars/non-entities/the+increase> ;
+            pb:A0                 <http://www.newsreader-project.eu/data/cars/non-entities/the+increase> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr34> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev43>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx0> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr25,rl55> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev43>
+            sem:hasActor          dbp:Kolubara ;
+            eso:possession-owner  dbp:Kolubara ;
+            pb:A0                 dbp:Kolubara .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr38> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev47>
+            sem:hasFutureTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx0> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr8,rl14> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev47>
+            sem:hasActor                dbp:Nikola_Tesla ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Categorization@Cognizer>
+                    dbp:Nikola_Tesla ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Grasp@Cognizer>
+                    dbp:Nikola_Tesla ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Perception_experience@Perceiver_passive>
+                    dbp:Nikola_Tesla ;
+            pb:A0                       dbp:Nikola_Tesla .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr39> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev48>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx0> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr14,rl32> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev48>
+            sem:hasActor          dbp:Reuters ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Statement@Speaker>
+                    dbp:Reuters ;
+            pb:A0                 dbp:Reuters .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr14,rl33> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev48>
+            sem:hasActor          <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Statement@Message>
+                    <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Statement@Topic>
+                    <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> ;
+            pb:A1                 <http://www.newsreader-project.eu/data/cars/non-entities/citing+tent+%27s+head+cedomir+ponocko> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr41> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev50>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx2> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr42> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev50>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx0> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr21,rl48> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev50>
+            sem:hasActor             <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Choosing@Cognizer>
+                    <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Statement@Speaker>
+                    <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Text_creation@Author>
+                    <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> ;
+            pb:A0                    <http://www.newsreader-project.eu/data/cars/entities/Cedomir_Ponocko> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tr43> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev51>
+            sem:hasTime  <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#tmx0> .
+}
+
+<http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#pr30,rl66> {
+    <http://www.newsreader-project.eu/data/2014/06/11/5CDF-W191-F15C-G01S.xml#ev51>
+            sem:hasActor              dbp:Energy ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Behind_the_scenes@Production>
+                    dbp:Energy ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Cause_to_start@Means>
+                    dbp:Energy ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Intentionally_create@Created_entity>
+                    dbp:Energy ;
+            <http://www.newsreader-project.eu/ontologies/framenet/Manufacturing@Product>
+                    dbp:Energy ;
+            pb:A1                     dbp:Energy .
+}
