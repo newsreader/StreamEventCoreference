@@ -446,7 +446,7 @@ import java.util.Iterator;
 
                         inferIdentityRelations(sparqlQuery, matchILI, matchLemma, matchMultiple, myILIs.size(), eventNode, gnew);
 
-                        System.out.println(sparqlQuery);
+                        // System.out.println(sparqlQuery);
 
                     }
                     else if (allTmx.size() == 1 && allAssociatedBeginTimes.size()==0) {
@@ -458,7 +458,7 @@ import java.util.Iterator;
 
                         inferIdentityRelations(sparqlQuery, matchILI, matchLemma, matchMultiple, myILIs.size(), eventNode, gnew);
 
-                        System.out.println(sparqlQuery);
+                        //System.out.println(sparqlQuery);
 
                     } else if (allTmx.size() == 0 && allAssociatedBeginTimes.size()==1) {
                         String begin = allAssociatedBeginTimes.get(0);
@@ -470,7 +470,7 @@ import java.util.Iterator;
 
                         inferIdentityRelations(sparqlQuery, matchILI, matchLemma, matchMultiple, myILIs.size(), eventNode, gnew);
 
-                        System.out.println(sparqlQuery);
+                        //System.out.println(sparqlQuery);
                     } else { //2+ times associated
                         sparqlQuery = sparqlSelectQuery + sparqlQuery;
                         boolean baseEventEmpty=true;
@@ -496,7 +496,7 @@ import java.util.Iterator;
                                 baseEventEmpty=false;
                             }
 
-                            System.out.println(sparqlQuery);
+                            //System.out.println(sparqlQuery);
                         }
 
                         for (int j=0; j<allTmx.size(); j++) {
@@ -571,13 +571,13 @@ import java.util.Iterator;
             for (Iterator<Quad> iter = g.find(null, eventId, timeNode, tmx); iter.hasNext(); ) {
                 Quad q = iter.next();
                 graphURI = q.getGraph();
-                System.out.println("ev " + graphURI);
+                //System.out.println("ev " + graphURI);
                 td=q;
             }
             g.delete(td);
             g.add(new Quad(graphURI, tmxEventId, timeNode, tmx));
-            System.out.println(g.contains(null, eventId, timeNode, tmx));
-            System.out.println(g.contains(null, tmxEventId, timeNode, tmx));
+            //System.out.println(g.contains(null, eventId, timeNode, tmx));
+            //System.out.println(g.contains(null, tmxEventId, timeNode, tmx));
 
             // The event-to-tmx has been cleaned (the tmx is transfered to the new event).
             //
@@ -590,9 +590,9 @@ import java.util.Iterator;
                     quadsToAdd.add(new Quad(q.getGraph(), tmxEventId, q.getPredicate(), q.getObject()));
                 }
             }
-            System.out.println(quadsToAdd.size());
+            //System.out.println(quadsToAdd.size());
             for (int qn=0; qn<quadsToAdd.size(); qn++){
-                System.out.println(quadsToAdd.get(qn));
+                //System.out.println(quadsToAdd.get(qn));
                 g.add(quadsToAdd.get(qn));
             }
         }
@@ -606,7 +606,7 @@ import java.util.Iterator;
             for (Iterator<Quad> iter = g.find(null, eventId, begintimeNode, begin); iter.hasNext(); ) {
                 Quad q = iter.next();
                 graphURI = q.getGraph();
-                System.out.println("ev " + graphURI);
+                //System.out.println("ev " + graphURI);
                 td=q;
             }
             g.delete(td);
@@ -617,7 +617,7 @@ import java.util.Iterator;
             for (Iterator<Quad> iter = g.find(null, eventId, endtimeNode, end); iter.hasNext(); ) {
                 Quad q = iter.next();
                 graphURI = q.getGraph();
-                System.out.println("ev " + graphURI);
+                //System.out.println("ev " + graphURI);
                 td=q;
             }
             g.delete(td);
@@ -634,9 +634,9 @@ import java.util.Iterator;
                     quadsToAdd.add(new Quad(q.getGraph(), tmxEventId, q.getPredicate(), q.getObject()));
                 }
             }
-            System.out.println(quadsToAdd.size());
+            //System.out.println(quadsToAdd.size());
             for (int qn=0; qn<quadsToAdd.size(); qn++){
-                System.out.println(quadsToAdd.get(qn));
+                //System.out.println(quadsToAdd.get(qn));
                 g.add(quadsToAdd.get(qn));
             }
         }
@@ -693,7 +693,7 @@ import java.util.Iterator;
                         threshold=phraseMatchThreshold;
 
                     if (matchMultiple) {
-                        System.out.println(solution);
+                        //System.out.println(solution);
                         if (checkIliLemmaThreshold(iliSize, solution.get("conceptcount").asLiteral().getInt(), solution.get("myconceptcount").asLiteral().getInt(), threshold)) {
                             insertIdentity(g, eventId, solution.get("ev").asNode());
                         }
@@ -731,7 +731,7 @@ import java.util.Iterator;
                         threshold=phraseMatchThreshold;
 
                     if (matchMultiple) {
-                        System.out.println(solution);
+                        //System.out.println(solution);
                         if (checkIliLemmaThreshold(iliSize, solution.get("conceptcount").asLiteral().getInt(), solution.get("myconceptcount").asLiteral().getInt(), threshold)) {
                             rslt.add(solution.get("ev").asNode());
                         }
@@ -749,10 +749,10 @@ import java.util.Iterator;
 
         private static boolean checkIliLemmaThreshold(int mysize, int kssize, int nMatches, int matchThreshold) {
 
-            System.out.println(mysize);
-            System.out.println(kssize);
-            System.out.println(nMatches);
-            System.out.println(matchThreshold);
+            //System.out.println(mysize);
+            //System.out.println(kssize);
+            //System.out.println(nMatches);
+            //System.out.println(matchThreshold);
             if ((nMatches * 100 / mysize >= matchThreshold) &&
                     (nMatches * 100 / kssize >= matchThreshold)) {
                 return true;
